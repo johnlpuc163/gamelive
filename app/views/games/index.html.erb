@@ -1,0 +1,118 @@
+<h1>Listing games</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @games.each do |game| %>
+      <tr>
+        <td><%= game.name %></td>
+        <td><%= game.updated_at %></td>
+        <td><%= link_to 'Show', game %></td>
+        <td><%= link_to 'Edit', edit_game_path(game) %></td>
+        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Game', new_game_path %>
+
+
+
+<div class="channel-main">
+  <script type="text/javascript" src="http://staticlive.douyutv.com/common/js/jquery.tinyscrollbar.min.js"></script>
+
+  <div class="g_sd51" style="height:950px;" id="left_col">
+
+    <div id="large_nav">
+      <div class="content left" >
+        <div class="top"> <a class="logo_zb" target="_self" href="/"> </a>
+          <form action="/search"  method="get" id="sidebar_search" onsubmit="search_submit_left(); return false;" class="sidebar_search mb15">
+          </form>
+        </div>
+        <div id="left_big_show">
+          <div class="scrollbar">
+            <div class="track">
+            </div>
+          </div>
+          <div class="viewport">
+            <div class="overview">
+
+              <p class="divider"></p>
+              <div class="nav_section" id="hotgame">
+                <h3 class="header01">热门游戏</h3>
+                <div class="clearfix">
+                  <div class="tagCont">
+                    <ul>
+                      <% Game.all.each do |g| %>
+                          <li><a  title="<%=  g.name %>"  href="<%=  game_url g %>"><%=  g.name %></a></li>
+                      <% end %>
+                      <li><a href="<%=  root_url %>" class="more" >全部>></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div  class="left_footer">
+          <p class="divider"></p>
+          <ul>
+            <li><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDA5MjU3MF8xNjQ1MDZfODAwMDkyNTcwXzJf" target="_blank">直播指导</a></li>
+            <li><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDA5MjU3MF8xNjQ1MDFfODAwMDkyNTcwXzJf" target="_blank">客服支持</a></li>
+            <li><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDA5MjU3MF8xNjQ1MDNfODAwMDkyNTcwXzJf" target="_blank">房间举报</a></li></ul>
+        </div>
+
+
+        <!-- <div class="gfbtn js_login_yes" style="display:none;">
+         <a class="dypic guide"  href="http://wpa.qq.com/msgrd?v=3&uin=1815874573&site=qq&menu=yes" target="_blank"><span>直播指导</span></a>
+         <a class="dypic feedback"  href="http://wpa.qq.com/msgrd?v=3&uin=1846108221&site=qq&menu=yes" target="_blank"><span>意见反馈</span></a>
+          </div>-->
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="expandRight column" id="main_col">
+    <div class="content">
+      <div id="elem-mimiko-test" class="stretch js-columns-scroll scroll" style="top: 0px; bottom: 0px; visibility: visible;">
+        <div class="tse-scroll-content" style="right: 0px; width: 1340px; height: 979px;">
+          <div class="tse-content" style=" padding-right:0px;">
+            <div class="player_column">
+              <div class="editable editable01" id="broadcast_meta">
+                <div class="info" style="padding-left:0;">
+                  <div class="title"> <span class="real_title js-title">热门游戏</span> </div>
+                </div>
+              </div>
+              <div class="items items01 clearfix" id="item_data"><ul>
+
+                <% @games.each do |c| %>
+
+                    <li class="unit"><a  href="<%=  game_url c %>" class="thumb" title="<%=  c.name %>"><img class="preview" src="<%=  c.image %>" />
+                    </a> <a  href="<%=  game_url c %>" class="title"><%=  c.name %></a></li>
+
+
+                <% end %>
+
+
+              </ul></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
