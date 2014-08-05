@@ -30,24 +30,52 @@ class Game < ActiveRecord::Base
       end
     end
 
-    client.query({"input"=>{"query"=>"server"},"connectorGuids"=>dota_uuids}, callback)
-    #client.query({"input"=>{"query"=>"server"},"connectorGuids"=>["134b171b-c419-4cbb-9924-c952476c230a"]}, callback)
-    client.join
-    client.disconnect
+    douyu_urls = ["http://www.douyutv.com/directory/game/CF", "http://www.douyutv.com/directory/game/How", "http://www.douyutv.com/directory/game/LOL", "http://www.douyutv.com/directory/game/DOTA2", "http://www.douyutv.com/directory/game/WOW"]
+    game17173_urls = ['http://v.17173.com/live/game/421','http://v.17173.com/live/game/1137','http://v.17173.com/live/game/21', 'http://v.17173.com/live/game/2007', 'http://v.17173.com/live/game/1589']
 
+    #client.query({"input"=>{"query"=>"server"},"connectorGuids"=>dota_uuids}, callback)
+    douyu_urls.each do |url|
+      client.query({"input"=>{"webpage/url"=>url},"connectorGuids"=>["002249e6-3a8e-4181-ab71-7c8cf7728ee2"]}, callback)
+    end
+    game17173_urls.each do |url|
+      client.query({"input"=>{"webpage/url"=>url},"connectorGuids"=>["1efc0b47-5f9a-4bd4-abf2-53b1d5f9e302"]}, callback)
+    end
+
+
+    puts "Going to join"
+    client.join
+    puts "Join completed"
+    puts "Going to disconnect"
+    client.disconnect
+    puts "Disconnected"
 
     Channel.delete_all
+
     data_rows.each do |datas|
       datas.each do |data|
-        channel = Channel.find_by(link: data['link'])
+        # channel = Channel.find_by(link: data['link'])
+        # vs = get_viewers(data['viewers'])
+        # if channel
+        #   channel.update(title: data['title'], viewers: vs, image: data['image'])
+        # else
+        #   game = Game.find_by(name: data['type'])
+        #   game.channels.create(title: data['title'], viewers: vs, link:data['link'], player: data['player'], image: data['image'], source: data['source'])
+        # end
         vs = get_viewers(data['viewers'])
-        if channel
-          channel.update(title: data['title'], viewers: vs, image: data['image'])
-        else
-          game = Game.find_by(name: data['type'])
-          game.channels.create(title: data['title'], viewers: vs, link:data['link'], player: data['player'], image: data['image'], source: data['source'])
-        end
+        game = Game.find_by(name: data['type'])
+        game.channels.create(title: data['title'], viewers: vs, link:data['link'], player: data['player'], image: data['image'], source: data['source'])
       end
+    end
+
+    puts "All done!"
+  end
+
+  def self.init_db
+    #names = ['DOTA2','英雄联盟','炉石传说','穿越火线','魔兽世界']
+    games = {'DOTA2'=>'http://staticlive.douyutv.com/upload/game_cate/0d0ccaa16a0dc5ea4a4741a7e4433386.png','英雄联盟'=>'http://staticlive.douyutv.com/upload/game_cate/be8db394d66ec6f51c12d287141ff99e.jpg','炉石传说'=>'http://staticlive.douyutv.com/upload/game_cate/8be974233e4ac4cb8db246f3dc29e4d8.jpg','穿越火线'=>'http://staticlive.douyutv.com/upload/game_cate/fbf130f9ad4cb3c76190357b47cd1f23.png','魔兽世界'=>'http://staticlive.douyutv.com/upload/game_cate/644537f4bd14901732f01e1ab9d8322b.png'}
+    games.each do |name,image|
+      game = Game.find_by(name: name)
+      Game.create(name: name,image: image) unless game
     end
   end
 
@@ -63,8 +91,5 @@ class Game < ActiveRecord::Base
     str.to_i
   end
 
-  def self.dota_uuids
-    ["b0260b47-8da4-4ebb-84b0-67bc1d6a79bf","134b171b-c419-4cbb-9924-c952476c230a"]
-  end
 
 end

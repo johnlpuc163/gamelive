@@ -49,14 +49,35 @@
 
                 <% @games.each do |c| %>
 
-                    <li class="unit"><a  href="<%=  game_url c %>" class="thumb" title="<%=  c.name %>"><img class="preview" src="<%=  c.image %>" />
-                    </a> <a  href="<%=  game_url c %>" class="title"><%=  c.name %></a></li>
-
+                    <li class="unit">
+                      <a  href="<%=  game_url c %>" class="thumb" title="<%=  c.name %>"><img class="preview" src="<%=  c.image %>" /></a>
+                      <a  href="<%=  game_url c %>" class="title" style="border: 0px"><%=  c.name %></a>
+                    </li>
 
                 <% end %>
 
 
               </ul></div>
+
+              <div class="editable editable01" id="broadcast_meta">
+                <div class="info" style="padding-left:0;">
+                  <div class="title"> <span class="real_title js-title">热门直播</span> </div>
+                </div>
+              </div>
+
+              <div class="items items01 clearfix" id="item_data"><ul>
+
+                <% @channels.each do |c| %>
+                    <li><a href="<%=  c.link %>" target='_blank' class="list" title="<%=  c.title %>"><span class="img"><img src="<%=  c.image %>" onerror="this.src='http://staticlive.douyutv.com/upload/web_pic/default2_thumb.gif'; this.onerror = null;" width="320" height="180"/></span>
+                      <div class="mes">
+                        <h1 class="title"><%=  c.title %></h1>
+                        <p class="moreMes"><span class="view"><%=  c.viewers %></span><span class="nnt"><%=  c.player %></span><span class="zbName"><em><%=  c.game.name %></em></span></p>
+                      </div>
+                      <i class="icon_live">正在直播</i> </a>
+                    </li>
+                <% end %>
+              </ul></div>
+
             </div>
           </div>
         </div>
