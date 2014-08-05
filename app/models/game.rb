@@ -30,8 +30,8 @@ class Game < ActiveRecord::Base
       end
     end
 
-    client.query({"input"=>{"query"=>"server"},"connectorGuids"=>["b0260b47-8da4-4ebb-84b0-67bc1d6a79bf"]}, callback)
-    client.query({"input"=>{"query"=>"server"},"connectorGuids"=>["134b171b-c419-4cbb-9924-c952476c230a"]}, callback)
+    client.query({"input"=>{"query"=>"server"},"connectorGuids"=>dota_uuids}, callback)
+    #client.query({"input"=>{"query"=>"server"},"connectorGuids"=>["134b171b-c419-4cbb-9924-c952476c230a"]}, callback)
     client.join
     client.disconnect
 
@@ -42,7 +42,7 @@ class Game < ActiveRecord::Base
         channel = Channel.find_by(link: data['link'])
         vs = get_viewers(data['viewers'])
         if channel
-          channel.update(title: data['title'], viewers: vs, player: data['player'], image: data['image'])
+          channel.update(title: data['title'], viewers: vs, image: data['image'])
         else
           game = Game.find_by(name: data['type'])
           game.channels.create(title: data['title'], viewers: vs, link:data['link'], player: data['player'], image: data['image'], source: data['source'])
@@ -61,6 +61,10 @@ class Game < ActiveRecord::Base
       str = str.to_f*10000
     end
     str.to_i
+  end
+
+  def dota_uuids
+    ["b0260b47-8da4-4ebb-84b0-67bc1d6a79bf","134b171b-c419-4cbb-9924-c952476c230a"]
   end
 
 end

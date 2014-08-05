@@ -1,0 +1,51 @@
+<div class="g_sd51" style="height:1080px;" id="left_col">
+
+  <div id="large_nav">
+    <div class="content left" >
+      <div class="top"> <a class="logo_zb" target="_self" href="/"> </a>
+        <form action="/search"  method="get" id="sidebar_search" onsubmit="search_submit_left(); return false;" class="sidebar_search mb15">
+        </form>
+      </div>
+      <div id="left_big_show">
+        <div class="scrollbar">
+          <div class="track">
+          </div>
+        </div>
+        <div class="viewport">
+          <div class="overview">
+
+            <p class="divider"></p>
+            <div class="nav_section" id="hotgame">
+              <h3 class="header01">热门游戏</h3>
+              <div class="clearfix">
+                <div class="tagCont">
+                  <ul>
+                    <% Game.all.each do |g| %>
+                        <li><a  title="<%=  g.name %>"  href="<%=  game_url g %>"><%=  g.name %></a></li>
+                    <% end %>
+                    <li><a href="<%=  root_url %>" class="more" >全部>></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div  class="left_footer">
+        <p class="divider"></p>
+        <ul>
+          <li><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDA5MjU3MF8xNjQ1MDZfODAwMDkyNTcwXzJf" target="_blank"></a></li>
+          <li><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDA5MjU3MF8xNjQ1MDFfODAwMDkyNTcwXzJf" target="_blank"></a></li>
+          <li><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDA5MjU3MF8xNjQ1MDNfODAwMDkyNTcwXzJf" target="_blank"></a></li></ul>
+      </div>
+
+
+      <!-- <div class="gfbtn js_login_yes" style="display:none;">
+       <a class="dypic guide"  href="http://wpa.qq.com/msgrd?v=3&uin=1815874573&site=qq&menu=yes" target="_blank"><span>直播指导</span></a>
+       <a class="dypic feedback"  href="http://wpa.qq.com/msgrd?v=3&uin=1846108221&site=qq&menu=yes" target="_blank"><span>意见反馈</span></a>
+        </div>-->
+
+    </div>
+  </div>
+</div>
