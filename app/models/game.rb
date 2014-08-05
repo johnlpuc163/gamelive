@@ -63,7 +63,7 @@ class Game < ActiveRecord::Base
     str.to_i
   end
 
-  def dota_uuids
+  def self.dota_uuids
     ["b0260b47-8da4-4ebb-84b0-67bc1d6a79bf","134b171b-c419-4cbb-9924-c952476c230a"]
   end
 
