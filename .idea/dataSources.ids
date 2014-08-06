@@ -3,4 +3,10 @@
   <data-source source="LOCAL" name="Rails testimportio: development" uuid="c3b6b519-642d-44b0-b827-72b28d399c9b">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
+  <data-source source="LOCAL" name="Rails testimportio: production" uuid="97ce66de-c6ba-4a21-b60c-5687f4f16927">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails testimportio: test" uuid="0830e22b-e968-4fc8-a047-49aa6e215f9a">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
 </component>

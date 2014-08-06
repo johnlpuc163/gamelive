@@ -5,14 +5,14 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = Game.all
-    @channels = Channel.all.order(viewers: :desc).limit(8)
+    @channels = Game.all_live_channels.order(viewers: :desc).limit(8)
   end
 
   # GET /games/1
   # GET /games/1.json
   def show
     game = Game.find_by_id params[:id]
-    @channels = game.channels.order(viewers: :desc).limit(20)
+    @channels = game.get_live_channels.order(viewers: :desc).limit(20)
   end
 
   # GET /games/new

@@ -19,6 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 2.minute do
+every 1.minute do
   runner "Game.update_data"
+end
+
+every 1.day do
+  runner "Game.delete_data"
 end

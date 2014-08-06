@@ -1,6 +1,10 @@
 class Game < ActiveRecord::Base
   has_many :channels
 
+  def self.delete_data
+    Channel.delete_all
+  end
+
   def self.update_data
     require "importio"
     client = Importio.new("c676d33a-07d7-46ef-8d08-a6920ea7daf6", "ToGGkRNT60bqadUUNW66knixXKB9uw8HwHCIDTQz8ocY1OBklyKXesXgYX1yUFooW4sMYgEG4WBqaTsQuT8j5w==")
@@ -49,21 +53,22 @@ class Game < ActiveRecord::Base
     client.disconnect
     puts "Disconnected"
 
-    Channel.delete_all
+    # Channel.delete_alla
+    all_live_channels.update_all(status: false)
 
     data_rows.each do |datas|
       datas.each do |data|
-        # channel = Channel.find_by(link: data['link'])
-        # vs = get_viewers(data['viewers'])
-        # if channel
-        #   channel.update(title: data['title'], viewers: vs, image: data['image'])
-        # else
-        #   game = Game.find_by(name: data['type'])
-        #   game.channels.create(title: data['title'], viewers: vs, link:data['link'], player: data['player'], image: data['image'], source: data['source'])
-        # end
+        channel = Channel.find_by(link: data['link'])
         vs = get_viewers(data['viewers'])
-        game = Game.find_by(name: data['type'])
-        game.channels.create(title: data['title'], viewers: vs, link:data['link'], player: data['player'], image: data['image'], source: data['source'])
+        if channel
+          channel.update(title: data['title'], viewers: vs, image: data['image'], status: true)
+        else
+          game = Game.find_by(name: data['type'])
+          game.channels.create(title: data['title'], viewers: vs, link:data['link'], player: data['player'], image: data['image'], source: data['source'], status: true)
+        end
+        # vs = get_viewers(data['viewers'])
+        # game = Game.find_by(name: data['type'])
+        # game.channels.create(title: data['title'], viewers: vs, link:data['link'], player: data['player'], image: data['image'], source: data['source'])
       end
     end
 
@@ -78,6 +83,17 @@ class Game < ActiveRecord::Base
       Game.create(name: name,image: image) unless game
     end
   end
+
+  def self.all_live_channels
+    Channel.all.where(status: true)
+  end
+
+
+  def get_live_channels
+    channels.where(status: true)
+  end
+
+
 
   private
 

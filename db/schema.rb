@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140804143325) do
+ActiveRecord::Schema.define(version: 20140806214518) do
 
   create_table "channels", force: true do |t|
     t.string   "title"
-    t.integer  "viewers",    limit: 255
+    t.integer  "viewers"
     t.string   "player"
     t.string   "link"
     t.string   "image"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140804143325) do
     t.string   "source"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status"
   end
 
   create_table "games", force: true do |t|

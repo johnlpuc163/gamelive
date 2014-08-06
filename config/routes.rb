@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'games/update_data' => 'games#update_data'
-  resources :games
+  resources :games, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

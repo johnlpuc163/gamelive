@@ -40,3 +40,4 @@ gem 'spring',        group: :development
 gem 'importio'
 gem 'whenever', :require => false
 gem  'passenger'
+gem 'mysql2'
