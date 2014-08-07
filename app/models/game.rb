@@ -73,8 +73,9 @@ class Game < ActiveRecord::Base
       end
     end
 
-    closed_channels = Channel.where("updated_at < ? AND status = ?", update_begin_time, true)
-    closed_channels.update_all(status: false)
+    update_threshold_time = update_begin_time - 200
+    closed_channels = Channel.where("updated_at < ? AND status = ?", update_threshold_time, true)
+    closed_channels.delete_all
 
     puts "All done!"
   end
