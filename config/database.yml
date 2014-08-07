@@ -14,7 +14,7 @@ development:
 #  database: db/development.sqlite3
     adapter: mysql2
     encoding: utf8
-    database: gamelivedbd
+    database: gamelivedb
     username: admin
     host: gamelivedb.ct9zfuymsatw.us-east-1.rds.amazonaws.com
     password: 12345678
