@@ -54,7 +54,8 @@ class Game < ActiveRecord::Base
     puts "Disconnected"
 
     # Channel.delete_alla
-    all_live_channels.update_all(status: false)
+    #all_live_channels.update_all(status: false)
+    update_begin_time = Time.now
 
     data_rows.each do |datas|
       datas.each do |data|
@@ -71,6 +72,9 @@ class Game < ActiveRecord::Base
         # game.channels.create(title: data['title'], viewers: vs, link:data['link'], player: data['player'], image: data['image'], source: data['source'])
       end
     end
+
+    closed_channels = Channel.where("updated_at < ? AND status = ?", update_begin_time, true)
+    closed_channels.update_all(status: false)
 
     puts "All done!"
   end
