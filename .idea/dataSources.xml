@@ -4,7 +4,7 @@
     <data-source source="LOCAL" name="Rails testimportio: development" uuid="c3b6b519-642d-44b0-b827-72b28d399c9b">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://gamelivedb.ct9zfuymsatw.us-east-1.rds.amazonaws.com:3306/gamelivedbdev</jdbc-url>
+      <jdbc-url>jdbc:mysql://gamelivedb.ct9zfuymsatw.us-east-1.rds.amazonaws.com:3306/gamelivedbd</jdbc-url>
       <user-name>admin</user-name>
       <user-password>df9bdf98df99df9edf9fdf9cdf9ddf92</user-password>
       <libraries />
