@@ -3,8 +3,10 @@
   <component name="DataSourceManagerImpl" format="xml" hash="1065361054">
     <data-source source="LOCAL" name="Rails testimportio: development" uuid="c3b6b519-642d-44b0-b827-72b28d399c9b">
       <driver-ref>sqlite.xerial</driver-ref>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://gamelivedb.ct9zfuymsatw.us-east-1.rds.amazonaws.com:3306/gamelivedbdev</jdbc-url>
+      <user-name>admin</user-name>
+      <user-password>df9bdf98df99df9edf9fdf9cdf9ddf92</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails testimportio: production" uuid="97ce66de-c6ba-4a21-b60c-5687f4f16927">
